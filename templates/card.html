@@ -1,0 +1,37 @@
+{#
+
+CONTEXT VARIABLES
+-----------------
+card: A Card instance
+
+#}
+{% from 'utility.html' import link, render_contents %}
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">
+      {% if card.href %}
+        {{ link(card.href, card.title) }}
+      {% else %}
+        {{ card.title }}
+      {% endif %}
+    </div>
+  </div>
+  <div class="card-body">
+      {{ render_contents(card.contents, True) }}
+{#    {% for item in card.contents %}#}
+{#      <div>#}
+{#        {% if item.type == 'Link' %}#}
+{#          {{ link(item.href, item.text) }}#}
+{#        {% elif item.type == 'Menu' %}#}
+{#          {% set menu = item %}#}
+{#          {% include 'menu.html' %}#}
+{#        {% elif item.type == 'LinkGroup' %}#}
+{#          {% set link_group = item %}#}
+{#          {% include 'link_group.html' %}#}
+{#        {% else %}#}
+{#          <div>Unknown type {{ item.type }}</div>#}
+{#        {% endif %}#}
+{#      </div>#}
+{#    {% endfor %}#}
+  </div>
+</div>

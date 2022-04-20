@@ -1,0 +1,14 @@
+{#
+
+CONTEXT VARIABLES
+-----------------
+link_group:   LinkGroup instance
+
+#}
+{% from 'utility.html' import link %}
+<div class="link-group">
+  {{ link(link_group.href, link_group.label) }}
+  {% for a_link in link_group.links %}
+      {{ link(a_link.href, a_link.label) }}
+  {% endfor %}
+</div>

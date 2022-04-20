@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{#
+
+CONTEXT VARIABLES
+-----------------
+contents:  Iterable of objects defining page contents
+
+#}
+{% from 'utility.html' import render_contents %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>John Cassidy's Homepage</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="bookmark-blocks">
+    {{ render_contents(contents) }}
+  </div>
+  <script src="index.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+
+{% macro input(name, value='', type='text') -%}
+    <input type="{{ type }}" value="{{ value|e }}" name="{{ name }}">
+{%- endmacro %}
+
+{% macro link(href, text) -%}
+  <a href="{{ href }}">{{ text }}</a>
+{%- endmacro %}
+
+{% macro render_contents(contents, wrap_in_div=False) -%}
+    {% if wrap_in_div %}
+        <div>
+    {% endif %}
+    {% for item in contents %}
+        {% if item.type == 'card' %}
+            {% set card = item %}
+            {% include 'card.html'%}
+        {% elif item.type == 'link' %}
+            {{ link(item.href, item.label) }}
+        {% elif item.type == 'menu' %}
+            {% set menu = item %}
+            {% include 'menu.html' %}
+        {% elif item.type == 'link group' %}
+            {% set link_group = item %}
+            {% include 'link_group.html' %}
+        {% else %}
+            Unsupported type {{ item.type }}
+        {% endif %}
+    {% endfor %}
+    {% if wrap_in_div %}
+        </div>
+    {% endif %}
+{%- endmacro %}

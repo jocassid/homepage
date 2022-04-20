@@ -1,0 +1,131 @@
+
+$color-background: #000000;
+$color-foreground-1: #ff9304;
+$color-foreground-2: #5193ff;
+$color-foreground-3: #86c8ff;
+$color-foreground-4: #fffa38;
+$radius-full: 1rem;
+$radius-half: 0.5rem;
+$button-radius: 0.75rem;
+
+body{
+    font-family: sans-serif;
+    background: black;
+    color: white;
+    margin: 0 0 0 0;
+}
+
+div.bookmark-blocks{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 96vh;
+    margin: 2vh 0.66vw 2vh 0vw;
+}
+
+div.card{
+    background: $color-foreground-1;
+    margin-bottom: 1rem;
+    margin-left: 0.5rem;
+    border-top-left-radius: $radius-full;
+}
+
+div.card-header{
+
+}
+
+div.card-title{
+    width: fit-content;
+    background: black;
+    color: $color-foreground-1;
+    margin-right: 1rem;
+    margin-left: auto;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+div.card-title > a{
+    background: $color-foreground-3;
+    color: black;
+    display: block;
+    width: fit-content;
+    text-decoration: none;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+div.card-body{
+    background: black;
+    margin-left: $radius-half;
+    margin-bottom: 0;
+    border-top-left-radius: $radius-half;
+    padding-left: $radius-half;
+    padding-top: $radius-half;
+}
+
+div.card-body > div{
+}
+
+div.card-body > div > a{
+    display: block;
+    background: $color-foreground-2;
+    color: black;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    padding: 0.25rem 1.5rem 0.25rem 1.5rem;
+    margin-top: 0.25rem;
+}
+
+div.card-body > div > select{
+    display: block;
+    background: $color-foreground-4;
+    border-color: $color-foreground-4;
+    border-radius: 0.75rem;
+    border-style: solid;
+    margin-top: 0.25rem;
+    padding: 0.25rem 1.5rem 0.25rem 1.5rem;
+    width: 100%;
+}
+
+div.link-group{
+    color: black;
+    display: flex;
+}
+
+div.link-group > a{
+    background: $color-foreground-4;
+    color: black;
+    text-decoration: none;
+    margin-top: 0.25rem;
+    margin-left: 0.25rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    flex: 1;
+}
+
+div.link-group > a:first-child{
+    margin-left: 0;
+    padding-left: 1.5rem;
+    border-top-left-radius: 0.75rem;
+    border-bottom-left-radius: 0.75rem;
+    flex: 2;
+}
+
+div.link-group > a:last-child{
+    padding-right: 1.5rem;
+    border-top-right-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+}
+
+div.card-footer{
+}
+
+
+//select{
+//    background: $color-foreground-4;
+//    border: none
+//}
