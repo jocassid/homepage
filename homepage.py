@@ -6,50 +6,11 @@ from sys import exit, stderr
 
 from jinja2 import Environment, select_autoescape, FileSystemLoader
 
-from yaml import load, dump
+from yaml import load
 try:
-    from yaml import CLoader as Loader, CDumper as Dumper
+    from yaml import CLoader as Loader
 except ImportError:
-    from yaml import Loader, Dumper
-
-
-class Component:
-    @property
-    def type(self):
-        return self.__class__.__name__
-
-
-class Link(Component):
-    def __init__(self, text, href):
-        self.text = text
-        self.href = href
-
-
-class Container(Component):
-    def __init__(self, *contents):
-        self.contents = contents
-
-
-class LinkGroup(Container):
-    """A group of links shown on one line such as multiple ports on local
-    host"""
-    def __init__(self, label, href, *contents):
-        super().__init__(*contents)
-        self.label = label
-        self.href = href
-
-
-class Menu(Container):
-    def __init__(self, prompt, *contents):
-        self.prompt = prompt
-        super().__init__(*contents)
-
-
-class Card(Container):
-    def __init__(self, title, *contents, **kwargs):
-        self.title = title
-        self.href = kwargs.get('href')
-        super().__init__(*contents)
+    from yaml import Loader
 
 
 def parse_contents(contents):
