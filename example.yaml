@@ -1,0 +1,200 @@
+%YAML 1.2
+---
+pages:
+  - file: index.html
+    template: index.html
+    contents:
+      - type: card
+        title: JavaScript
+        href: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+        contents:
+          - type: link
+            label: Jquery
+            href: https://jquery.com/
+          - type: link
+            label: Bootstrap
+            href: https://getbootstrap.com/docs/4.3/
+          - type: link group
+            label: AngularJS
+            href: https://angularjs.org/
+            links:
+              - label: Angular2+
+                href: https://angular.io/
+          - type: link
+            label: quirksmode.org
+            href: https://www.quirksmode.org/
+          - type: link
+            label: reveal.js
+            href: https://github.com/hakimel/reveal.js/
+          - type: link group
+            label: nodejs
+            href: https://nodejs.org/
+            links:
+              - label: learn nodejs
+                href: https://nodejs.dev/learn
+      - type: card
+        title: Java
+        href: https://www.oracle.com/technetwork/java/index.html
+        contents:
+          - type: link
+            label: JavaSE 12 API
+            href: https://docs.oracle.com/en/java/javase/12/docs/api/index.html
+          - type: link
+            label: JavaEE 6 API
+            href: http://docs.oracle.com/javaee/6/api/
+          - type: link
+            label: Apache Ant
+            href: http://ant.apache.org/manual
+          - type: link
+            label: Apache TomEE
+            href: http://tomee.apache.org/
+      - type: card
+        title: Python
+        href: https://docs.python.org/3/index.html
+        contents:
+          - type: link
+            label: Module Index
+            href: http://docs.python.org/3/py-modindex.html
+          - type: link
+            label: Built-in Functions
+            href: https://docs.python.org/3/library/functions.html
+          - type: link
+            label: Cheeseshop
+            href: https://pypi.python.org/pypi
+          - type: link
+            label: Django
+            href: http://docs.djangoproject.com/
+          - type: menu
+            label: Libraries ...
+            links:
+              - label: Bokeh
+                href: https://bokeh.pydata.org
+              - label: cyclonedx-python
+                href: https://github.com/CycloneDX/cyclonedx-python
+              - label: cyclonedx-python-lib
+                href: https://github.com/CycloneDX/cyclonedx-python-lib
+              - label: django-bootstrap4
+                href: https://django-bootstrap4.readthedocs.io/en/latest/
+              - label: Django REST Framework
+                href: https://django-rest-framework.org/
+              - label: Flask
+                href: https://flask.palletsprojects.com/
+              - label: Jinja2
+                href: https://jinja2docs.readthedocs.io/
+              - label: joblib
+                href: https://joblib.readthedocs.io/en/latest/persistence.html
+              - label: matplotlib
+                href: https://matplotlib.org/
+              - label: NumPy
+                href: https://www.numpy.org/
+              - label: openpyxl (read/write .xslx)
+                href: https://openpyxl.readthedocs.io/
+              - label: Pandas
+                href: https://pandas.pydata.org/pandas-docs/stable/
+              - label: Poetry
+                href: https://python-poetry.org/docs/
+              - label: pytest
+                href: https://pytest.org/
+              - label: requests
+                href: https://docs.python-requests.org/en/master/
+              - label: Scikit-Learn
+                href: https://scikit-learn.org/
+              - label: SQL Alchemy
+                href: http://sqlalchemy.org/
+              - label: SymPy
+                href: https://www.sympy.org
+      - type: card
+        title: Web
+        contents:
+          - type: link group
+            label: MDN
+            href: https://developer.mozilla.org/en-US/
+            links:
+              - label: JS
+                href: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+              - label: CSS
+                href: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference#index
+          - type: link
+            label: Bulma
+            href: https://developer.mozilla.org/en-US/
+          - type: link
+            label: caniuse.com
+            href: http://caniuse.com/
+          - type: link
+            label: SASS
+            href: https://sass-lang.com/
+          - type: link
+            label: Selenium
+            href: http://docs.selenium.org/
+          - type: menu
+            label: Misc ...
+            links:
+              - label: Nodejs
+                href: https://nodejs.org/en/docs/
+              - label: TypeScript
+                href: https://www.typescriptlang.org/
+      - type: card
+        title: Version Control
+        contents:
+          - type: menu
+            label: Mercurial Sites ...
+            links:
+              - label: Mercurial
+                href: http://mercurial.selenic.com/
+              - label: "[Mercurial] The Definitive Guide"
+                href: http://hgbook.red-bean.com/read/
+      - type: card
+        title: Entertainment
+        contents:
+          - type: link
+            label: Audible
+            href: http://audible.com/
+          - type: link
+            label: Pandora
+            href: http://pandora.com/
+          - type: link
+            label: YouTube
+            href: https://youtube.com
+          - type: link
+            label: KSP Wiki
+            href: http://wiki.kerbalspaceprogram.com/wiki/Key_bindings
+      - type: card
+        title: Databases
+        contents:
+          - type: link group
+            label: SQLite
+            href: https://sqlite.org/
+            links:
+              - label: Syntax
+                href: https://sqlite.org/lang.html
+          - type: link
+            label: Postgresql
+            href: https://www.postgresql.org/docs/10/index.html
+          - type: link
+            label: Mongo DB
+            href: https://docs.mongodb.com/manual/
+      - type: card
+        title: Linux
+        contents:
+          - type: link
+            label: vim
+            href: https://vim.rtorr.com/
+          - type: link
+            label: Apache Webserver
+            href: https://httpd.apache.org/
+          - type: link
+            label: Docker
+            href: https://docs.docker.com
+          - type: link
+            label: Nginx
+            href: https://nginx.org
+      - type: card
+        title: Arduino
+        contents:
+          - type: link
+            label: Language Reference
+            href: http://arduino.cc/en/Reference/HomePage
+          - type: link
+            label: Writing a Library
+            href: http://arduino.cc/en/Hacking/LibraryTutorial
+
