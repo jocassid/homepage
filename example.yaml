@@ -1,37 +1,38 @@
 %YAML 1.2
 ---
 pages:
-  - file: index.html
-    template: index.html
-    contents:
-      - type: card
-        title: JavaScript
-        href: https://developer.mozilla.org/en-US/docs/Web/JavaScript
-        contents:
-          - type: link
-            label: Jquery
-            href: https://jquery.com/
-          - type: link
-            label: Bootstrap
-            href: https://getbootstrap.com/docs/4.3/
-          - type: link group
-            label: AngularJS
-            href: https://angularjs.org/
-            links:
-              - label: Angular2+
-                href: https://angular.io/
-          - type: link
-            label: quirksmode.org
-            href: https://www.quirksmode.org/
-          - type: link
-            label: reveal.js
-            href: https://github.com/hakimel/reveal.js/
-          - type: link group
-            label: nodejs
-            href: https://nodejs.org/
-            links:
-              - label: learn nodejs
-                href: https://nodejs.dev/learn
+- file: index.html
+  title: My Homepage
+  template: index.html
+  contents:
+    - type: card
+      title: JavaScript
+      href: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+      contents:
+        - type: link
+          label: Jquery
+          href: https://jquery.com/
+        - type: link
+          label: Bootstrap
+          href: https://getbootstrap.com/docs/4.3/
+        - type: link group
+          label: AngularJS
+          href: https://angularjs.org/
+          links:
+          - label: Angular2+
+            href: https://angular.io/
+        - type: link
+          label: quirksmode.org
+          href: https://www.quirksmode.org/
+        - type: link
+          label: reveal.js
+          href: https://github.com/hakimel/reveal.js/
+        - type: link group
+          label: nodejs
+          href: https://nodejs.org/
+          links:
+          - label: learn nodejs
+            href: https://nodejs.dev/learn
       - type: card
         title: Java
         href: https://www.oracle.com/technetwork/java/index.html
@@ -95,6 +96,8 @@ pages:
                 href: https://python-poetry.org/docs/
               - label: pytest
                 href: https://pytest.org/
+              - label: PyYAML
+                href: https://pyyaml.org/wiki/PyYAMLDocumentation
               - label: requests
                 href: https://docs.python-requests.org/en/master/
               - label: Scikit-Learn
