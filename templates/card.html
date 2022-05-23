@@ -16,22 +16,9 @@ card: A Card instance
       {% endif %}
     </div>
   </div>
-  <div class="card-body">
-      {{ render_contents(card.contents, True) }}
-{#    {% for item in card.contents %}#}
-{#      <div>#}
-{#        {% if item.type == 'Link' %}#}
-{#          {{ link(item.href, item.text) }}#}
-{#        {% elif item.type == 'Menu' %}#}
-{#          {% set menu = item %}#}
-{#          {% include 'menu.html' %}#}
-{#        {% elif item.type == 'LinkGroup' %}#}
-{#          {% set link_group = item %}#}
-{#          {% include 'link_group.html' %}#}
-{#        {% else %}#}
-{#          <div>Unknown type {{ item.type }}</div>#}
-{#        {% endif %}#}
-{#      </div>#}
-{#    {% endfor %}#}
+  <div class="card-body-frame">
+    <div class="card-body">
+      {{ render_contents(card.contents) }}
+    </div>
   </div>
 </div>

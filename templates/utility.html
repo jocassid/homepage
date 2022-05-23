@@ -7,10 +7,7 @@
   <a href="{{ href }}">{{ text }}</a>
 {%- endmacro %}
 
-{% macro render_contents(contents, wrap_in_div=False) -%}
-    {% if wrap_in_div %}
-        <div>
-    {% endif %}
+{% macro render_contents(contents) -%}
     {% for item in contents %}
         {% if item.type == 'card' %}
             {% set card = item %}
@@ -27,7 +24,4 @@
             Unsupported type {{ item.type }}
         {% endif %}
     {% endfor %}
-    {% if wrap_in_div %}
-        </div>
-    {% endif %}
 {%- endmacro %}

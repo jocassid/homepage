@@ -24,22 +24,26 @@ div.bookmark-blocks{
 }
 
 div.card{
-    background: $color-foreground-1;
     margin-bottom: 1rem;
     margin-left: 0.5rem;
-    border-top-left-radius: $radius-full;
 }
 
 div.card-header{
-
+    background: $color-foreground-1;
+    height: 1.25rem;
+    border-top-left-radius: 1.25rem;
+    border-top-right-radius: 0.625rem;
+    border-bottom-right-radius: 0.625rem;
 }
 
 div.card-title{
     width: fit-content;
     background: black;
     color: $color-foreground-1;
-    margin-right: 1rem;
+    margin-right: 2rem;
     margin-left: auto;
+    height: 1.25rem;
+    vertical-align: baseline;
     padding-left: 0.25rem;
     padding-right: 0.25rem;
     font-weight: bold;
@@ -56,19 +60,21 @@ div.card-title > a{
     padding-right: 0.5rem;
 }
 
+
+div.card-body-frame {
+  background: $color-foreground-1;
+}
+
+
 div.card-body{
     background: black;
     margin-left: $radius-half;
-    margin-bottom: 0;
-    border-top-left-radius: $radius-half;
-    padding-left: $radius-half;
-    padding-top: $radius-half;
+    border-top-left-radius: 0.5rem;
+    padding-left: 0.5rem;
+    padding-top: 0.5rem;
 }
 
-div.card-body > div{
-}
-
-div.card-body > div > a{
+div.card-body > a{
     display: block;
     background: $color-foreground-2;
     color: black;
@@ -78,7 +84,7 @@ div.card-body > div > a{
     margin-top: 0.25rem;
 }
 
-div.card-body > div > select{
+div.card-body > select{
     display: block;
     background: $color-foreground-4;
     border-color: $color-foreground-4;
@@ -100,10 +106,7 @@ div.link-group > a{
     text-decoration: none;
     margin-top: 0.25rem;
     margin-left: 0.25rem;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding: 0.25rem 0.5rem;
     flex: 1;
 }
 
