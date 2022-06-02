@@ -8,3 +8,10 @@ function menuSelect(selectElement)
         window.location = href;
     }
 }
+
+
+function search(searchInput)
+{
+    let searchDiv = searchInput.parentElement;
+    console.log('foo');
+}
