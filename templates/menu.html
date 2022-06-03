@@ -5,7 +5,7 @@ CONTEXT VARIABLES
 menu: A Menu instance
 
 #}
-<select onchange="menuSelect(this)">
+<select class="menu">
   <option selected>{{ menu.label }}</option>
   {% for link in menu.links %}
       <option data-href="{{ link.href }}">{{ link.label }}</option>

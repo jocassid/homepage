@@ -4,10 +4,14 @@ from argparse import ArgumentParser
 from os import system
 from os.path import exists
 from pathlib import Path
+from shutil import copy2
 from stat import ST_MTIME
 from sys import exit, stderr
 
-from jinja2 import Environment, select_autoescape, FileSystemLoader
+from jinja2 import \
+    Environment, \
+    FileSystemLoader, \
+    select_autoescape
 
 from yaml import load
 try:
@@ -83,6 +87,21 @@ def generate_css(homepage_dir, output_dir):
     return system(command) == 0
 
 
+def copy_homepage_js(homepage_dir, output_dir):
+    filename = 'homepage.js'
+    src = homepage_dir / filename
+    dst = output_dir / filename
+
+    if not src.exists():
+        print(f"{src} doesn't exist", file=stderr)
+        exit(2)
+
+    if dst.exists() and src.stat().st_mtime < dst.stat().st_mtime:
+        return
+
+    copy2(src, dst)
+
+
 def main(args):
 
     output_dir = Path(args.output_dir)
@@ -94,6 +113,7 @@ def main(args):
 
     render_html(args.input_file, output_dir)
     generate_css(homepage_dir, output_dir)
+    copy_homepage_js(homepage_dir, output_dir)
 
 
 if __name__ == '__main__':
