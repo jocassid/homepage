@@ -1,5 +1,6 @@
 
 $color-background: #000000;
+$color-foreground-0: #ffffff;
 $color-foreground-1: #ff9304;
 $color-foreground-2: #5193ff;
 $color-foreground-3: #86c8ff;
@@ -10,8 +11,8 @@ $button-radius: 0.75rem;
 
 body{
     font-family: sans-serif;
-    background: black;
-    color: white;
+    background: $color-background;
+    color: $color-foreground-0;
     margin: 0 0 0 0;
 }
 
@@ -20,7 +21,7 @@ div.bookmark-blocks{
     flex-direction: column;
     flex-wrap: wrap;
     max-height: 96vh;
-    margin: 2vh 0.66vw 2vh 0vw;
+    margin: 2vh 0.66vw 2vh 0;
 }
 
 div.card{
@@ -38,7 +39,7 @@ div.card-header{
 
 div.card-title{
     width: fit-content;
-    background: black;
+    background: $color-background;
     color: $color-foreground-1;
     margin-right: 2rem;
     margin-left: auto;
@@ -52,7 +53,7 @@ div.card-title{
 
 div.card-title > a{
     background: $color-foreground-3;
-    color: black;
+    color: $color-background;
     display: block;
     width: fit-content;
     text-decoration: none;
@@ -67,7 +68,7 @@ div.card-body-frame {
 
 
 div.card-body{
-    background: black;
+    background: $color-background;
     margin-left: $radius-half;
     border-top-left-radius: 0.5rem;
     padding-left: 0.5rem;
@@ -77,7 +78,7 @@ div.card-body{
 div.card-body > a{
     display: block;
     background: $color-foreground-2;
-    color: black;
+    color: $color-background;
     border-radius: 0.75rem;
     text-decoration: none;
     padding: 0.25rem 1.5rem 0.25rem 1.5rem;
@@ -100,38 +101,41 @@ div.card-body div.search{
 }
 
 div.card-body input.search{
-    background: black;
+    background: $color-background;
     color: $color-foreground-1;
     height: 1.5rem;
+    min-height: 1.5rem;
+    max-height: 1.5rem;
+    line-height: 1.5rem;
     border: solid $color-foreground-1 0.0625rem;
     border-top-left-radius: 0.75rem;
     border-bottom-left-radius: 0.75rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 0.0625rem;
-    padding-bottom: 0.0625rem;
+    padding: 0 1rem 0 1rem;
 }
 
-div.card-body button.search{
+div.card-body a.search{
     background: $color-foreground-1;
-    color: black;
-    height: 1.625rem;
-    border: solid $color-foreground-1 0.0625rem;
+    color: $color-background;
+    height: 1.5rem;
+    min-height: 1.5rem;
+    max-height: 1.5rem;
+    line-height: 1.5rem;
+    text-decoration: none;
+    border: solid $color-foreground-1 0.1875rem;
     border-top-right-radius: 0.75rem;
     border-bottom-right-radius: 0.75rem;
-    padding-top: 0.0625rem;
-    padding-bottom: 0.0625rem;
+    padding: 0 0.75rem 0.0625rem 0.5rem;
 }
 
 
 div.link-group{
-    color: black;
+    color: $color-background;
     display: flex;
 }
 
 div.link-group > a{
     background: $color-foreground-4;
-    color: black;
+    color: $color-background;
     text-decoration: none;
     margin-top: 0.25rem;
     margin-left: 0.25rem;
