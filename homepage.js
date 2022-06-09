@@ -11,16 +11,50 @@ function menuSelect(event)
 }
 
 
+function getSearchButton(searchInput)
+{
+    let searchDiv = searchInput.parentElement;
+    return searchDiv.querySelector('a.search');
+}
+
+
 function search(event)
 {
-    console.debug('search');
     let searchInput = event.target;
     if(!searchInput)
         return;
-    
-    let searchDiv = searchInput.parentElement;
-    console.debug(searchDiv);
-    console.log(searchInput.value);
+
+    let searchUrl = searchInput.getAttribute('data-href');
+    searchUrl = searchUrl.replace('SEARCH_STRING', searchInput.value);
+
+    let searchButton = getSearchButton(searchInput);
+    searchButton.setAttribute('href', searchUrl);
+}
+
+
+function handleKeyUp(event)
+{
+    if(event.key !== 'Enter')
+        return;
+
+    if(!document.hasFocus())
+        return;
+
+    let activeElement = document.activeElement;
+    if(!activeElement)
+        return;
+
+    if(activeElement.tagName !== 'INPUT')
+        return;
+
+    if(!activeElement.classList.contains('search'))
+        return;
+
+    let searchButton = getSearchButton(activeElement);
+    let searchUrl = searchButton.href;
+    if(searchUrl.indexOf('SEARCH_STRING') >= 0)
+        return;
+    document.location = searchUrl;
 }
 
 
@@ -37,6 +71,8 @@ function setup()
     {
         searchInput.addEventListener('input', search);
     }
+
+    document.addEventListener('keyup', handleKeyUp);
 }
 
 setup();
