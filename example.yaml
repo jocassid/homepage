@@ -42,20 +42,20 @@ pages:
             href: https://docs.oracle.com/en/java/javase/12/docs/api/index.html
           - type: link
             label: JavaEE 6 API
-            href: http://docs.oracle.com/javaee/6/api/
+            href: https://docs.oracle.com/javaee/6/api/
           - type: link
             label: Apache Ant
-            href: http://ant.apache.org/manual
+            href: https://ant.apache.org/manual
           - type: link
             label: Apache TomEE
-            href: http://tomee.apache.org/
+            href: https://tomee.apache.org/
       - type: card
         title: Python
         href: https://docs.python.org/3/index.html
         contents:
           - type: link
             label: Module Index
-            href: http://docs.python.org/3/py-modindex.html
+            href: https://docs.python.org/3/py-modindex.html
           - type: link
             label: Built-in Functions
             href: https://docs.python.org/3/library/functions.html
@@ -64,7 +64,7 @@ pages:
             href: https://pypi.python.org/pypi
           - type: link
             label: Django
-            href: http://docs.djangoproject.com/
+            href: https://docs.djangoproject.com/
           - type: menu
             label: Libraries ...
             links:
@@ -103,7 +103,7 @@ pages:
               - label: Scikit-Learn
                 href: https://scikit-learn.org/
               - label: SQL Alchemy
-                href: http://sqlalchemy.org/
+                href: https://sqlalchemy.org/
               - label: SymPy
                 href: https://www.sympy.org
       - type: card
@@ -122,13 +122,13 @@ pages:
             href: https://developer.mozilla.org/en-US/
           - type: link
             label: caniuse.com
-            href: http://caniuse.com/
+            href: https://caniuse.com/
           - type: link
             label: SASS
             href: https://sass-lang.com/
           - type: link
             label: Selenium
-            href: http://docs.selenium.org/
+            href: https://docs.selenium.org/
           - type: menu
             label: Misc ...
             links:
@@ -143,15 +143,15 @@ pages:
             label: Mercurial Sites ...
             links:
               - label: Mercurial
-                href: http://mercurial.selenic.com/
+                href: https://mercurial.selenic.com/
               - label: "[Mercurial] The Definitive Guide"
-                href: http://hgbook.red-bean.com/read/
+                href: https://hgbook.red-bean.com/read/
       - type: card
         title: Entertainment
         contents:
           - type: link
             label: Audible
-            href: http://audible.com/
+            href: https://audible.com/
           - type: link
             label: Pandora
             href: http://pandora.com/
