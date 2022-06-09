@@ -20,6 +20,9 @@
         {% elif item.type == 'link group' %}
             {% set link_group = item %}
             {% include 'link_group.html' %}
+        {% elif item.type == 'search' %}
+            {% set search = item %}
+            {% include 'search.html' %}
         {% else %}
             Unsupported type {{ item.type }}
         {% endif %}
