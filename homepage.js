@@ -13,7 +13,7 @@ function menuSelect(event)
 
 function getSearchButton(searchInput)
 {
-    let searchDiv = searchInput.parentElement;
+    let searchDiv = searchInput.parentElement.parentElement;
     return searchDiv.querySelector('a.search');
 }
 
