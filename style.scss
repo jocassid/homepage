@@ -98,33 +98,37 @@ div.card-body > select{
 
 div.card-body div.search{
     margin-top: 0.375rem;
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    gap: 0.25rem;
 }
 
-div.card-body input.search{
-    background: $color-background;
-    color: $color-foreground-1;
-    height: 1.5rem;
-    min-height: 1.5rem;
-    max-height: 1.5rem;
-    line-height: 1.5rem;
+div.search > div.search-field{
     border: solid $color-foreground-1 0.0625rem;
-    border-top-left-radius: 0.75rem;
-    border-bottom-left-radius: 0.75rem;
-    padding: 0 1rem 0 1rem;
+    padding: 0.25rem 0.25rem 0.25rem 1rem;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
 }
 
-div.card-body a.search{
+
+div.search-field > input[type='text']{
+    color: $color-foreground-1;
+    background: black;
+    border: none;
+    width: 100%;
+}
+
+div.search > div.search-link{
+    border: solid $color-foreground-1 0.0625rem;
+    padding: 0.25rem 1rem 0.25rem 1rem;
     background: $color-foreground-1;
-    color: $color-background;
-    height: 1.5rem;
-    min-height: 1.5rem;
-    max-height: 1.5rem;
-    line-height: 1.5rem;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+div.search-link > a{
     text-decoration: none;
-    border: solid $color-foreground-1 0.1875rem;
-    border-top-right-radius: 0.75rem;
-    border-bottom-right-radius: 0.75rem;
-    padding: 0 0.75rem 0.0625rem 0.5rem;
+    color: $color-background;
 }
 
 

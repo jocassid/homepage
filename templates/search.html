@@ -6,10 +6,14 @@ search: search config dict
 
 #}
 <div class="search">
-    <input type="text"
-           class="search"
-           data-href="{{ search.href }}"
-           placeholder="{{ search.label }}"
-           onchange="search(this)"/>
-    <a class="search" href="">GO</a>
+    <div class="search-field">
+        <input type="text"
+               class="search"
+               data-href="{{ search.href }}"
+               placeholder="{{ search.label }}"
+               onchange="search(this)"/>
+    </div>
+    <div class="search-link">
+        <a class="search" href="">GO</a>
+    </div>
 </div>
