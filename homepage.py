@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 
 from argparse import ArgumentParser
+from collections import OrderedDict
 from os import system
 from os.path import exists
 from pathlib import Path
 from shutil import copy2
 from stat import ST_MTIME
 from sys import exit, stderr
+from typing import Generator
 
 from jinja2 import \
     Environment, \
@@ -20,12 +22,32 @@ except ImportError:
     from yaml import Loader
 
 
-def parse_contents(contents):
+def parse_contents(page: dict) -> Generator[dict, None, None]:
+    contents = page.get('contents', [])
+    content_sort = page.get('content_sort', [])
+    if not content_sort:
+        for item in contents:
+            yield item
+        return
+
+    contents_by_label = OrderedDict()
     for item in contents:
-        item_type = item.get('type')
-        if not item_type:
-            print("Item missing type", file=stderr)
+        label = item.get('label') or item.get('title')
+        if not label:
+            print(f"Item missing label/title", file=stderr)
             continue
+        label = label.lower()
+        contents_by_label[label] = item
+
+    for label in content_sort:
+        label_lower = label.lower()
+        item = contents_by_label.pop(label_lower, None)
+        if not item:
+            print(f"Content item {label} not found", file=stderr)
+            continue
+        yield item
+
+    for item in contents_by_label.values():
         yield item
 
 
@@ -62,9 +84,7 @@ def render_html(input_file, output_dir):
             with open(str(output_file), 'w') as out_file:
                 out_file.write(
                     template.render(
-                        contents=parse_contents(
-                            page.get('contents', [])
-                        ),
+                        contents=parse_contents(page),
                     )
                 )
     return True

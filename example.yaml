@@ -1,9 +1,15 @@
 %YAML 1.2
 ---
+version: 1
+requires:
+  - logo.png
 pages:
 - file: index.html
   title: My Homepage
   template: index.html
+  content_sort:
+    - Python
+    - JavaScript
   contents:
   - type: card
     title: JavaScript
