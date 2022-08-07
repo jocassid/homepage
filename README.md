@@ -71,14 +71,28 @@ The basic structure of the YAML document is shown below.  The intent is for
 the YAML file to define one or more[1] HTML files.  Currently, a page contains 
 number of cards.  Each card can have a number of items in its contents.
 
+`version` indicates the version of the homepage YAML syntax.  If not specified, 
+the program assumes version 1 syntax [2]
+
+The `content_sort` provides a list of card titles to control the order in which 
+cards are shown without having to re-order large chunks of the YAML 
+file.  `content_sort` is an optional element.  If card titles are omitted 
+from this list, those cards will be shown in document order after the 
+specified cards.
+
 1. I'm not sure of the "or more" part works yet
+2. So far no changes have been made to the syntax that aren't backwards compatible.
 
 ```yaml
 %YAML 1.2
 ---
+version: 1
 pages:
   - file: index.html
     template: index.html
+    content_sort:
+    - Python
+    - JavaScript
     contents:
       - type: card
         title: Network
