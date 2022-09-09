@@ -2,8 +2,9 @@
 
 from argparse import ArgumentParser
 from collections import OrderedDict
+from glob import glob
 from os import system
-from os.path import exists
+from os.path import exists, expanduser
 from pathlib import Path
 from shutil import copy2
 from stat import ST_MTIME
@@ -55,7 +56,21 @@ def mod_time(path):
     return path.stat()[ST_MTIME]
 
 
-def render_html(input_file, output_dir):
+def copy_required_files(requires, output_dir):
+    for required in requires:
+        pieces = [p.strip() for p in required.split('->')]
+        if len(pieces) > 2:
+            print(f"Invalid required path {required}", file=stderr)
+            continue
+        if len(pieces) == 2:
+            output_dir = output_dir / pieces[1]
+            if not output_dir.exists():
+                output_dir.mkdir(parents=True)
+        for globbed in glob(expanduser(pieces[0])):
+            copy2(globbed, output_dir)
+
+
+def process_input_file(input_file, output_dir):
 
     env = Environment(
         loader=FileSystemLoader(
@@ -71,6 +86,8 @@ def render_html(input_file, output_dir):
     with open(input_file, 'rb') as input_file:
         data = load(input_file, Loader=Loader)
         # print(f"data is {data}")
+
+        copy_required_files(data.get('requires', []), output_dir)
 
         for page in data.get('pages', []):
             template = page.get('template')
@@ -131,7 +148,7 @@ def main(args):
 
     homepage_dir = Path(__file__).parent
 
-    render_html(args.input_file, output_dir)
+    process_input_file(args.input_file, output_dir)
     generate_css(homepage_dir, output_dir)
     copy_homepage_js(homepage_dir, output_dir)
 
