@@ -9,7 +9,7 @@ from pathlib import Path
 from shutil import copy2
 from stat import ST_MTIME
 from sys import exit, stderr
-from typing import Generator
+from typing import Iterator, List
 
 from jinja2 import \
     Environment, \
@@ -23,7 +23,7 @@ except ImportError:
     from yaml import Loader
 
 
-def parse_contents(page: dict) -> Generator[dict, None, None]:
+def parse_contents(page: dict) -> Iterator[dict]:
     contents = page.get('contents', [])
     content_sort = page.get('content_sort', [])
     if not content_sort:
@@ -52,11 +52,13 @@ def parse_contents(page: dict) -> Generator[dict, None, None]:
         yield item
 
 
-def mod_time(path):
-    return path.stat()[ST_MTIME]
+def mod_time(path: Path):
+    # I found that some files copied w/ copy2 had modified times that
+    # differ by factions of a second.
+    return int(path.stat().st_mtime)
 
 
-def copy_required_files(requires, output_dir):
+def copy_required_files(requires: List[str], output_dir: Path):
     for required in requires:
         pieces = [p.strip() for p in required.split('->')]
         if len(pieces) > 2:
@@ -67,10 +69,18 @@ def copy_required_files(requires, output_dir):
             if not output_dir.exists():
                 output_dir.mkdir(parents=True)
         for globbed in glob(expanduser(pieces[0])):
-            copy2(globbed, output_dir)
+            src_file = Path(globbed)
+            dest_file = output_dir / src_file.name
+            if dest_file.exists():
+                dest_mtime = mod_time(dest_file)
+                src_mtime = mod_time(src_file)
+                if dest_mtime >= src_mtime:
+                    continue
+            print(f"Copying {src_file} -> {dest_file}")
+            copy2(src_file, dest_file)
 
 
-def process_input_file(input_file, output_dir):
+def process_input_file(input_file: str, output_dir: Path):
 
     env = Environment(
         loader=FileSystemLoader(
