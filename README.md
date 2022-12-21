@@ -5,7 +5,6 @@ Code to generate page with links to commonly used sites
 
 # Requirements
 - Python (3.6 or greater)
-- node
 
 # Installation
 
@@ -33,12 +32,6 @@ Windows (Powershell)
 cd homepage
 pip install -r requirements.txt
 ```
-
-## 5. Install JavaScript (Node) dependencies
-
-Run this command within the `homepage` directory
-
-`npm install`
 
 # Using the homepage script
 

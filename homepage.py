@@ -118,7 +118,8 @@ def process_input_file(input_file: str, output_dir: Path):
 
 
 def generate_css(homepage_dir, output_dir):
-    source_file = homepage_dir / 'style.scss'
+    source_file = homepage_dir / 'style.css'
+    # source_file = homepage_dir / 'style.scss'
     dest_file = output_dir / 'style.css'
 
     if not source_file.exists():
@@ -129,12 +130,15 @@ def generate_css(homepage_dir, output_dir):
         # destination exist and is newer than source
         return True
 
-    sass_path = homepage_dir / 'node_modules/sass/sass.js'
-    command = f"node {sass_path} {source_file} {dest_file}"
-    return system(command) == 0
+    copy2(source_file, dest_file)
+
+    return True
+    # sass_path = homepage_dir / 'node_modules/sass/sass.js'
+    # command = f"node {sass_path} {source_file} {dest_file}"
+    # return system(command) == 0
 
 
-def copy_homepage_js(homepage_dir, output_dir):
+def copy_homepage_js(homepage_dir: Path, output_dir: Path):
     filename = 'homepage.js'
     src = homepage_dir / filename
     dst = output_dir / filename
@@ -151,12 +155,12 @@ def copy_homepage_js(homepage_dir, output_dir):
 
 def main(args):
 
-    output_dir = Path(args.output_dir)
+    output_dir: Path = Path(args.output_dir)
     if not output_dir.exists():
         print(f"{output_dir} doesn't exist", file=stderr)
         exit(1)
 
-    homepage_dir = Path(__file__).parent
+    homepage_dir: Path = Path(__file__).parent
 
     process_input_file(args.input_file, output_dir)
     generate_css(homepage_dir, output_dir)

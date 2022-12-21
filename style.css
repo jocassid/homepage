@@ -1,18 +1,20 @@
 
-$color-background: #000000;
-$color-foreground-0: #ffffff;
-$color-foreground-1: #ff9304;
-$color-foreground-2: #5193ff;
-$color-foreground-3: #86c8ff;
-$color-foreground-4: #fffa38;
-$radius-full: 1rem;
-$radius-half: 0.5rem;
-$button-radius: 0.75rem;
+:root{
+    --color-background: #000000;
+    --color-foreground-0: #ffffff;
+    --color-foreground-1: #ff9304;
+    --color-foreground-2: #5193ff;
+    --color-foreground-3: #86c8ff;
+    --color-foreground-4: #fffa38;
+    --radius-full: 1rem;
+    --radius-half: 0.5rem;
+    --button-radius: 0.75rem;
+}
 
 body{
     font-family: sans-serif;
-    background: $color-background;
-    color: $color-foreground-0;
+    background: var(--color-background);
+    color: var(--color-foreground-0);
     margin: 0 0 0 0;
 }
 
@@ -30,7 +32,7 @@ div.card{
 }
 
 div.card-header{
-    background: $color-foreground-1;
+    background: var(--color-foreground-1);
     height: 1.25rem;
     border-top-left-radius: 1.25rem;
     border-top-right-radius: 0.625rem;
@@ -39,8 +41,8 @@ div.card-header{
 
 div.card-title{
     width: fit-content;
-    background: $color-background;
-    color: $color-foreground-1;
+    background: var(--color-background);
+    color: var(--color-foreground-1);
     margin-right: 2rem;
     margin-left: auto;
     height: 1.25rem;
@@ -52,8 +54,8 @@ div.card-title{
 }
 
 div.card-title > a{
-    background: $color-foreground-3;
-    color: $color-background;
+    background: var(--color-foreground-3);
+    color: var(--color-background);
     display: block;
     width: fit-content;
     text-decoration: none;
@@ -63,13 +65,13 @@ div.card-title > a{
 
 
 div.card-body-frame {
-  background: $color-foreground-1;
+  background: var(--color-foreground-1);
 }
 
 
 div.card-body{
-    background: $color-background;
-    margin-left: $radius-half;
+    background: var(--color-background);
+    margin-left: var(--radius-half);
     border-top-left-radius: 0.5rem;
     padding-left: 0.5rem;
     padding-top: 0.5rem;
@@ -77,8 +79,8 @@ div.card-body{
 
 div.card-body > a{
     display: block;
-    background: $color-foreground-2;
-    color: $color-background;
+    background: var(--color-foreground-2);
+    color: var(--color-background);
     border-radius: 0.75rem;
     text-decoration: none;
     padding: 0.25rem 1.5rem 0.25rem 1.5rem;
@@ -87,8 +89,8 @@ div.card-body > a{
 
 div.card-body > select{
     display: block;
-    background: $color-foreground-4;
-    border-color: $color-foreground-4;
+    background: var(--color-foreground-4);
+    border-color: var(--color-foreground-4);
     border-radius: 0.75rem;
     border-style: solid;
     margin-top: 0.25rem;
@@ -104,7 +106,7 @@ div.card-body div.search{
 }
 
 div.search > div.search-field{
-    border: solid $color-foreground-1 0.0625rem;
+    border: solid var(--color-foreground-1) 0.0625rem;
     padding: 0.25rem 0.25rem 0.25rem 1rem;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
@@ -112,34 +114,34 @@ div.search > div.search-field{
 
 
 div.search-field > input[type='text']{
-    color: $color-foreground-1;
+    color: var(--color-foreground-1);
     background: black;
     border: none;
     width: 100%;
 }
 
 div.search > div.search-link{
-    border: solid $color-foreground-1 0.0625rem;
+    border: solid var(--color-foreground-1) 0.0625rem;
     padding: 0.25rem 1rem 0.25rem 1rem;
-    background: $color-foreground-1;
+    background: var(--color-foreground-1);
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
 }
 
 div.search-link > a{
     text-decoration: none;
-    color: $color-background;
+    color: var(--color-background);
 }
 
 
 div.link-group{
-    color: $color-background;
+    color: var(--color-background);
     display: flex;
 }
 
 div.link-group > a{
-    background: $color-foreground-4;
-    color: $color-background;
+    background: var(--color-foreground-4);
+    color: var(--color-background);
     text-decoration: none;
     margin-top: 0.25rem;
     margin-left: 0.25rem;
@@ -159,12 +161,3 @@ div.link-group > a:last-child{
     border-top-right-radius: 0.75rem;
     border-bottom-right-radius: 0.75rem;
 }
-
-div.card-footer{
-}
-
-
-//select{
-//    background: $color-foreground-4;
-//    border: none
-//}
