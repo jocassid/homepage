@@ -18,6 +18,25 @@ body{
     margin: 0 0 0 0;
 }
 
+button{
+    color: var(--color-background);
+    background: var(--color-foreground-1);
+    font-size: 1.5rem;
+    border: solid 0.125rem var(--color-foreground-1);
+}
+
+textarea{
+    border: solid 0.125rem var(--color-foreground-1);
+    background-color: var(--color-background);
+    color: var(--color-foreground-1);
+}
+
+textarea:focus{
+    border: solid 0.25rem var(--color-foreground-1);
+    /*box-shadow: none; doesn't get rid of styling browser adds */
+}
+
+
 div.bookmark-blocks{
     display: flex;
     flex-direction: column;
