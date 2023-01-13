@@ -61,16 +61,20 @@ def mod_time(path: Path):
 def copy_required_files(requires: List[str], output_dir: Path):
     for required in requires:
         pieces = [p.strip() for p in required.split('->')]
-        if len(pieces) > 2:
+        piece_count = len(pieces)
+        if piece_count > 2:
             print(f"Invalid required path {required}", file=stderr)
             continue
-        if len(pieces) == 2:
-            output_dir = output_dir / pieces[1]
-            if not output_dir.exists():
-                output_dir.mkdir(parents=True)
+        # split will return a list of at least 1 piece
+        if piece_count == 1:
+            temp_output_dir = output_dir
+        else:
+            temp_output_dir = output_dir / pieces[1]
+        if not temp_output_dir.exists():
+            temp_output_dir.mkdir(parents=True)
         for globbed in glob(expanduser(pieces[0])):
             src_file = Path(globbed)
-            dest_file = output_dir / src_file.name
+            dest_file = temp_output_dir / src_file.name
             if dest_file.exists():
                 dest_mtime = mod_time(dest_file)
                 src_mtime = mod_time(src_file)
