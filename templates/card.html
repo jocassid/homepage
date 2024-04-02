@@ -12,7 +12,7 @@ card: A Card instance
       {% if card.href %}
         {{ link(card.href, card.title) }}
       {% else %}
-        {{ card.title }}
+        <span class="card-title">{{ card.title }}</span>
       {% endif %}
     </div>
   </div>

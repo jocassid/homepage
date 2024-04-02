@@ -1,0 +1,73 @@
+
+@import "base.css";
+
+:root{
+    --color-background: #ffffff;
+    --color-foreground-0: black;
+    --color-foreground-1: blue;
+    --color-foreground-2: rgb(192, 192, 192);
+    --color-foreground-3: rgb(224, 224, 224);
+    --color-foreground-4: rgb(233, 233, 237);  /* default button color in Firefox */
+}
+
+a{
+    color: blue;
+}
+
+div.card-title{
+    background: var(--color-foreground-3);
+    color: var(--color-foreground-0);
+    padding: 0.125rem 1rem 0.125rem 1rem;
+}
+
+div.card-title > a{
+    color: var(--color-foreground-1);
+}
+
+div.card-body{
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-left: 0.5rem;
+}
+
+div.card-body > a{
+    color: var(--color-foreground-1);
+}
+
+div.card-body > select {
+    display: inline-block;
+    margin-top: 0.25rem;
+    /*margin: 0.25rem 0.25rem 0 0;*/
+    border: solid var(--color-foreground-0) 0.0625rem;
+    padding: 0.25rem;
+    color: var(--color-foreground-0);
+}
+
+div.link-group > a{
+    border: dotted var(--color-foreground-2) 0.125rem;
+    padding: 0.125rem 0.125rem 0.125rem 0.125rem;
+    margin-right: 0.25rem;
+    color: var(--color-foreground-1);
+}
+
+div.search > div.search-field{
+    width: 100%;
+}
+
+div.search-field > input[type='text']{
+    width: 95%;
+}
+
+div.search > div.search-link{
+    border: solid var(--color-foreground-0) 0.0625rem;
+    background-color: var(--color-foreground-4);
+    text-align: center;
+}
+
+div.search-link > a{
+    color: var(--color-foreground-0);
+    text-decoration: none;
+}
+
+
+

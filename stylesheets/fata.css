@@ -1,0 +1,58 @@
+
+@import "base.css";
+
+
+:root{
+    --color-background: rgb(16, 0, 0);
+    --color-foreground-0: #9a5919;
+    --color-foreground-1: #ac2f20;
+    --color-foreground-2: #e68c4f;
+
+    --font-family: monospace;
+}
+
+body{
+    background-color: var(--color-background);
+    color: var(--color-foreground-2);
+    text-transform: uppercase;
+    font-family: var(--font-family);
+    font-size: 1.125rem;
+    margin: 1rem;
+    border: solid var(--color-foreground-2) 0.125rem;
+}
+
+a{
+    color: var(--color-foreground-2);
+    text-decoration: none;
+}
+
+select{
+    background-color: var(--color-foreground-2);
+    border: solid var(--color-foreground-2) 0.125rem;
+}
+
+option{
+    background-color: var(--color-foreground-2);
+    color: var(--color-background);
+    font-family: var(--font-family);
+}
+
+div.bookmark-blocks{
+    margin: 1rem;
+}
+
+div.card{
+    border: solid var(--color-foreground-2) 0.125rem;
+}
+
+div.card-header{
+    border-bottom: solid var(--color-foreground-2) 0.125rem;
+}
+
+div.card-title > a{
+    background: var(--color-foreground-2);
+    color: var(--color-background);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    display: block;
+}

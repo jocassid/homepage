@@ -121,14 +121,10 @@ def process_input_file(input_file: str, output_dir: Path):
     return True
 
 
-def generate_css(homepage_dir, output_dir):
-    source_file = homepage_dir / 'style.css'
-    # source_file = homepage_dir / 'style.scss'
-    dest_file = output_dir / 'style.css'
-
+def copy_if_newer(source_file, dest_file):
     if not source_file.exists():
         print(f"{source_file} not found", file=stderr)
-        return
+        return False
 
     if dest_file.exists() and mod_time(dest_file) >= mod_time(source_file):
         # destination exist and is newer than source
@@ -137,9 +133,31 @@ def generate_css(homepage_dir, output_dir):
     copy2(source_file, dest_file)
 
     return True
-    # sass_path = homepage_dir / 'node_modules/sass/sass.js'
-    # command = f"node {sass_path} {source_file} {dest_file}"
-    # return system(command) == 0
+
+
+def copy_css(homepage_dir, stylesheet, output_dir):
+    if stylesheet is None:
+        stylesheet = 'default.css'
+
+    if not stylesheet.endswith('.css'):
+        stylesheet += '.css'
+
+    if stylesheet == 'base.css':
+        print(f"Invalid stylesheet choice", file=stderr)
+
+    stylesheets_dir = homepage_dir / 'stylesheets'
+
+    return all([
+        # always copy the non-base spreadsheet in case user specified a different
+        copy2(
+            stylesheets_dir / stylesheet,
+            output_dir / 'style.css',
+        ),
+        copy_if_newer(
+            stylesheets_dir / 'base.css',
+            output_dir / 'base.css',
+        ),
+    ])
 
 
 def copy_homepage_js(homepage_dir: Path, output_dir: Path):
@@ -167,16 +185,21 @@ def main(args):
     homepage_dir: Path = Path(__file__).parent
 
     process_input_file(args.input_file, output_dir)
-    generate_css(homepage_dir, output_dir)
+    copy_css(homepage_dir, args.style_sheet, output_dir)
     copy_homepage_js(homepage_dir, output_dir)
 
 
 if __name__ == '__main__':
     arg_parser = ArgumentParser(description='Build home page')
     arg_parser.add_argument(
+        '-s', '--style-sheet',
+    )
+    arg_parser.add_argument(
         'input_file',
     )
     arg_parser.add_argument(
         'output_dir',
     )
+    # args_temp = arg_parser.parse_args()
+    # print(args_temp)
     main(arg_parser.parse_args())
