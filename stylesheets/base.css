@@ -1,0 +1,70 @@
+
+body{
+    background: var(--color-background);
+    color: var(--color-foreground-0);
+    margin: 0 0 0 0;
+}
+
+button {
+    color: var(--color-background);
+    background: var(--color-foreground-1);
+    font-size: 1.5rem;
+    border: solid 0.125rem var(--color-foreground-1);
+}
+
+textarea{
+    border: solid 0.125rem var(--color-foreground-1);
+    background-color: var(--color-background);
+    color: var(--color-foreground-1);
+}
+
+textarea:focus{
+    border: solid 0.25rem var(--color-foreground-1);
+    /*box-shadow: none; doesn't get rid of styling browser adds */
+}
+
+div.bookmark-blocks{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 96vh;
+    margin: 2vh 0.66vw 2vh 0;
+}
+
+div.card{
+}
+
+div.card-header {
+}
+
+div.card-body{
+    padding-top: 0.5rem;
+}
+
+div.card-body > a {
+    display: block;
+}
+
+div.link-group{
+    display: flex;
+}
+
+div.link-group > a{
+}
+
+div.link-group > a:first-child{
+}
+
+div.link-group > a:last-child{
+}
+
+div.card-body div.search{
+}
+
+
+
+
+
+
+
+
