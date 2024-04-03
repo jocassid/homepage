@@ -10,8 +10,17 @@
     --color-foreground-4: rgb(233, 233, 237);  /* default button color in Firefox */
 }
 
+body{
+    padding: 1rem;
+}
+
 a{
     color: blue;
+}
+
+div.bookmark-blocks{
+    row-gap: 1rem;
+    column-gap: 1rem;
 }
 
 div.card-title{
@@ -50,6 +59,11 @@ div.link-group > a{
     color: var(--color-foreground-1);
 }
 
+div.search{
+    display: flex;
+    align-items: flex-start;
+}
+
 div.search > div.search-field{
     width: 100%;
 }
@@ -62,6 +76,8 @@ div.search > div.search-link{
     border: solid var(--color-foreground-0) 0.0625rem;
     background-color: var(--color-foreground-4);
     text-align: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 
 div.search-link > a{

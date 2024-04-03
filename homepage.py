@@ -139,7 +139,10 @@ def copy_css(homepage_dir, stylesheet, output_dir):
     if stylesheet is None:
         stylesheet = 'default.css'
 
-    if not stylesheet.endswith('.css'):
+    if stylesheet.endswith('.css'):
+        stylesheet_root = stylesheet[:-4]
+    else:
+        stylesheet_root = stylesheet
         stylesheet += '.css'
 
     if stylesheet == 'base.css':
@@ -147,17 +150,29 @@ def copy_css(homepage_dir, stylesheet, output_dir):
 
     stylesheets_dir = homepage_dir / 'stylesheets'
 
-    return all([
-        # always copy the non-base spreadsheet in case user specified a different
-        copy2(
-            stylesheets_dir / stylesheet,
-            output_dir / 'style.css',
-        ),
-        copy_if_newer(
-            stylesheets_dir / 'base.css',
-            output_dir / 'base.css',
-        ),
-    ])
+    # always copy the non-base spreadsheet in case user specified a style
+    # this time around
+    copy2(
+        stylesheets_dir / stylesheet,
+        output_dir / 'style.css',
+    )
+
+    copy_if_newer(
+        stylesheets_dir / 'base.css',
+        output_dir / 'base.css',
+    )
+
+    images_src_dir = stylesheets_dir / f"{stylesheet_root}-images"
+    if not images_src_dir.exists():
+        return
+
+    images_dest_dir = output_dir / 'images'
+    if not images_dest_dir.exists():
+        images_dest_dir.mkdir()
+
+    for source_file in images_src_dir.iterdir():
+        dest_file = images_dest_dir / source_file.name
+        copy_if_newer(source_file, dest_file)
 
 
 def copy_homepage_js(homepage_dir: Path, output_dir: Path):

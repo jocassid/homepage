@@ -4,55 +4,115 @@
 
 :root{
     --color-background: rgb(16, 0, 0);
-    --color-foreground-0: #9a5919;
-    --color-foreground-1: #ac2f20;
-    --color-foreground-2: #e68c4f;
+    --color-foreground-0: #ac2f20;
+    --color-foreground-1: #e68c4f;
+    --color-foreground-2: #ae7100;
 
     --font-family: monospace;
 }
 
 body{
     background-color: var(--color-background);
-    color: var(--color-foreground-2);
+    color: var(--color-foreground-1);
     text-transform: uppercase;
     font-family: var(--font-family);
     font-size: 1.125rem;
+    /*
     margin: 1rem;
-    border: solid var(--color-foreground-2) 0.125rem;
+
+
+    background-clip: content-box;
+     */
 }
 
 a{
-    color: var(--color-foreground-2);
+    color: var(--color-foreground-1);
     text-decoration: none;
 }
 
 select{
-    background-color: var(--color-foreground-2);
-    border: solid var(--color-foreground-2) 0.125rem;
+    background-color: var(--color-foreground-1);
+    border: solid var(--color-foreground-1) 0.125rem;
 }
 
 option{
-    background-color: var(--color-foreground-2);
+    background-color: var(--color-foreground-1);
     color: var(--color-background);
     font-family: var(--font-family);
 }
 
 div.bookmark-blocks{
+
     margin: 1rem;
+    border: solid var(--color-foreground-1) 0.125rem;
+    padding: 1rem;
+    column-gap: 1rem;
+    row-gap: 1rem;
+    background-image: url('images/fata-grid.svg');
+
 }
 
 div.card{
-    border: solid var(--color-foreground-2) 0.125rem;
+    border: solid var(--color-foreground-1) 0.125rem;
+    background-color: var(--color-background);
 }
 
 div.card-header{
-    border-bottom: solid var(--color-foreground-2) 0.125rem;
+    border-bottom: solid var(--color-foreground-1) 0.125rem;
+}
+
+div.card-title{
+    padding-top: 0.25rem;
+    padding-left: 0.5rem;
+    padding-bottom: 0.375rem;
 }
 
 div.card-title > a{
-    background: var(--color-foreground-2);
-    color: var(--color-background);
+    border-bottom: dotted var(--color-foreground-1) 0.125rem;
+}
+
+div.card-body{
+    padding-left: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+div.link-group{
+    align-items: flex-start;
+}
+
+div.link-group > a{
+    color: var(--color-foreground-0);
+    border-right: solid var(--color-foreground-0) 0.25rem;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
-    display: block;
+}
+
+div.link-group > a:first-child{
+    padding-left: 0;
+}
+
+div.link-group > a:last-child{
+    border-right: none;
+}
+
+div.search{
+    display: flex;
+    column-gap: 0.5rem;
+}
+
+div.search-field > input[type='text']{
+    background: var(--color-background);
+    color: var(--color-foreground-0);
+    border: solid var(--color-foreground-0) 0.125rem;
+    height: 1.5rem;
+}
+
+div.search-link > a{
+    display: inline-block;
+    height: 1.75rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    background: var(--color-foreground-0);
+    color: var(--color-background);
+    vertical-align: middle;
 }
