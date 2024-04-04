@@ -72,6 +72,8 @@ function setup()
         searchInput.addEventListener('input', search);
     }
 
+    let pageSwitchers = document.querySelector('div.page-switcher-button');
+
     document.addEventListener('keyup', handleKeyUp);
 }
 

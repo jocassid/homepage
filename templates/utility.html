@@ -7,7 +7,7 @@
   <a href="{{ href }}">{{ text }}</a>
 {%- endmacro %}
 
-{% macro render_contents(contents) -%}
+{% macro render_contents(contents, title) -%}
     {% for item in contents %}
         {% if item.type == 'card' %}
             {% set card = item %}
@@ -23,6 +23,9 @@
         {% elif item.type == 'search' %}
             {% set search = item %}
             {% include 'search.html' %}
+        {% elif item.type == 'page switcher' %}
+            {% set switcher = item %}
+            {% include 'page_switcher.html' %}
         {% else %}
             Unsupported type {{ item.type }}
         {% endif %}

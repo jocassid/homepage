@@ -1,0 +1,12 @@
+digraph call_diagram {
+  node [shape="rectangle"];
+  rankdir="LR";
+  main -> process_input_file [label="1"];
+  main -> generate_css [label="2"];
+  main -> copy_homepage_js [label="3"];
+  validate [label="Validator.validate"];
+  process_input_file -> validate [label="1"];
+  process_input_file -> copy_required_files [label="2"];
+  process_input_file -> parse_contents [label="3"];
+  copy_required_files -> mod_time;
+}

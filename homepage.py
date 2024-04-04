@@ -9,7 +9,7 @@ from pathlib import Path
 from shutil import copy2
 from stat import ST_MTIME
 from sys import exit, stderr
-from typing import Iterator, List
+from typing import Any, Dict, Iterable, Iterator, List, Tuple
 
 from jinja2 import \
     Environment, \
@@ -23,12 +23,41 @@ except ImportError:
     from yaml import Loader
 
 
-def parse_contents(page: dict) -> Iterator[dict]:
+class ValidationError(ValueError):
+    pass
+
+
+class Validator:
+
+    def validate(self, data):
+        self.validate_version(data)
+
+    @staticmethod
+    def validate_version(data):
+        version = data.get('version')
+        if version is None:
+            return
+        try:
+            version = int(version)
+        except (TypeError, ValueError):
+            raise ValidationError('version should be an integer')
+        if version < 1:
+            raise ValidationError("version should be greater than zero")
+
+
+def parse_contents(
+        page: dict,
+        page_switcher_links: Dict[str, Dict[str, str]],
+) -> Iterator[dict]:
+
     contents = page.get('contents', [])
     content_sort = page.get('content_sort', [])
     if not content_sort:
         for item in contents:
-            yield item
+            yield add_page_switcher_links(
+                item,
+                page_switcher_links,
+            )
         return
 
     contents_by_label = OrderedDict()
@@ -46,10 +75,10 @@ def parse_contents(page: dict) -> Iterator[dict]:
         if not item:
             print(f"Content item {label} not found", file=stderr)
             continue
-        yield item
+        yield add_page_switcher_links(item, page_switcher_links)
 
     for item in contents_by_label.values():
-        yield item
+        yield add_page_switcher_links(item, page_switcher_links)
 
 
 def mod_time(path: Path):
@@ -84,6 +113,17 @@ def copy_required_files(requires: List[str], output_dir: Path):
             copy2(src_file, dest_file)
 
 
+def add_page_switcher_links(
+        content_item: dict,
+        page_switcher_links: Dict[str, Dict[str, str]],
+):
+    item_type = content_item.get('type', '')
+    if item_type != 'page switcher':
+        return content_item
+    content_item['links'] = page_switcher_links
+    return content_item
+
+
 def process_input_file(input_file: str, output_dir: Path):
 
     env = Environment(
@@ -97,33 +137,60 @@ def process_input_file(input_file: str, output_dir: Path):
         print(f"{input_file} doesn't exist", file=stderr)
         return False
 
+    data = None
     with open(input_file, 'rb') as input_file:
         data = load(input_file, Loader=Loader)
         # print(f"data is {data}")
 
-        copy_required_files(data.get('requires', []), output_dir)
+    if not data:
+        return False
 
-        for page in data.get('pages', []):
-            template = page.get('template')
-            template = env.get_template(template)
+    validator = Validator()
+    validator.validate(data)
 
-            file_name = page.get('file')
-            if not file_name:
-                continue
+    copy_required_files(data.get('requires', []), output_dir)
 
-            output_file = output_dir / file_name
-            with open(str(output_file), 'w') as out_file:
-                out_file.write(
-                    template.render(
-                        contents=parse_contents(page),
-                    )
+    site_data_type = List[Tuple[str, str, Any]]
+
+    site_data: site_data_type = []
+    for page in data.get('pages', []):
+        filename = page.get('file')
+        if not filename:
+            continue
+        title = page.get('title')
+        if not title:
+            continue
+        site_data.append(
+            (filename, title, page),
+        )
+
+    page_switcher_links = OrderedDict()
+    for filename, title, _ in site_data:
+        page_switcher_links[title] = {
+            'label': title,
+            'href': filename,
+        }
+
+    for filename, title, page in site_data:
+        template = page.get('template')
+        template = env.get_template(template)
+
+        output_file = output_dir / filename
+        with open(str(output_file), 'w') as out_file:
+            out_file.write(
+                template.render(
+                    title=title,
+                    contents=parse_contents(
+                        page,
+                        page_switcher_links,
+                    ),
                 )
+            )
     return True
 
 
 def generate_css(homepage_dir, output_dir):
     source_file = homepage_dir / 'style.css'
-    # source_file = homepage_dir / 'style.scss'
     dest_file = output_dir / 'style.css'
 
     if not source_file.exists():
@@ -137,9 +204,6 @@ def generate_css(homepage_dir, output_dir):
     copy2(source_file, dest_file)
 
     return True
-    # sass_path = homepage_dir / 'node_modules/sass/sass.js'
-    # command = f"node {sass_path} {source_file} {dest_file}"
-    # return system(command) == 0
 
 
 def copy_homepage_js(homepage_dir: Path, output_dir: Path):

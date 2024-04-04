@@ -9,6 +9,8 @@
     --radius-full: 1rem;
     --radius-half: 0.5rem;
     --button-radius: 0.75rem;
+    --card-margin-bottom: 1rem;
+    --card-margin-left: 0.5rem;
 }
 
 body{
@@ -46,8 +48,8 @@ div.bookmark-blocks{
 }
 
 div.card{
-    margin-bottom: 1rem;
-    margin-left: 0.5rem;
+    margin-bottom: var(--card-margin-bottom);
+    margin-left: var(--card-margin-left);
 }
 
 div.card-header{
@@ -180,3 +182,41 @@ div.link-group > a:last-child{
     border-top-right-radius: 0.75rem;
     border-bottom-right-radius: 0.75rem;
 }
+
+div.page-switcher{
+    margin-bottom: var(--card-margin-bottom);
+    margin-left: var(--card-margin-left);
+    text-transform: uppercase;
+}
+
+div.page-switcher-button{
+    color: var(--color-background);
+    background-color: var(--color-foreground-3);
+    border-radius: 0.625rem;
+    padding-left: 0.625rem;
+    /*border: solid var(--color-foreground-3) 0.5rem;*/
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+div.page-switcher-button-active{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+div.page-switcher-menu{
+    background-color: var(--color-background);
+    padding: 1rem;
+    border-right: solid 0.25rem var(--color-foreground-3);
+    border-bottom: solid 0.25rem var(--color-foreground-3);
+    border-left: solid 0.25rem var(--color-foreground-3);
+    border-bottom-left-radius: 0.625rem;
+    border-bottom-right-radius: 0.625rem;
+}
+
+div.page-switcher-menu > a{
+    color: var(--color-foreground-1);
+}
+
+
+
