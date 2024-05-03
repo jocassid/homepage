@@ -1,0 +1,19 @@
+{#
+
+CONTEXT VARIABLES
+-----------------
+switcher:   Data for page switcher
+title:      Title of current page
+
+#}
+
+<div class="page-switcher">
+  <div class="page-switcher-button">{{ title }}</div>
+  <div class="page-switcher-menu" style="display: none">
+    {% for link in switcher.links.values() %}
+      {% if link.label != title %}
+        <a href="{{ link.href }}">{{ link.label }}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
