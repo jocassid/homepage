@@ -45,6 +45,10 @@ div.card-body > a {
     display: block;
 }
 
+div.card-body > select{
+    display: block;
+}
+
 div.link-group{
     display: flex;
 }

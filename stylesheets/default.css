@@ -41,6 +41,7 @@ div.card-body{
 
 div.card-body > a{
     color: var(--color-foreground-1);
+    margin-bottom: 0.125rem;
 }
 
 div.card-body > select {
@@ -62,6 +63,7 @@ div.link-group > a{
 div.search{
     display: flex;
     align-items: flex-start;
+    margin-bottom: 0.375rem;
 }
 
 div.search > div.search-field{
