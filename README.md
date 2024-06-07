@@ -56,6 +56,16 @@ On Windows systems you typically need to use the following command
 
 `python3 .\homepage.py PATH_TO_YAML_FILE OUTPUT_DIRECTORY`
 
+By default, the pages are rendered using the default stylesheet.  To specify 
+a different spreadsheet use the `-s SPREAD_SHEET` option. i.e.
+
+`./homepage.py -s lcars private/personal_homepage.yaml dist/`
+
+The following stylesheets are currently supported:
+* default
+* lcars
+* fata
+
 # homepage YAML Syntax
 
 ## Basic Structure
