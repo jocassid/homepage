@@ -1,0 +1,4 @@
+digraph call_diagram{
+  main -> process_input_file [label="1"];
+  main -> generate_css [label="2"];
+}

@@ -9,7 +9,7 @@ from pathlib import Path
 from shutil import copy2
 from stat import ST_MTIME
 from sys import exit, stderr
-from typing import Iterator, List
+from typing import Dict, Iterator, List
 
 from jinja2 import \
     Environment, \
@@ -23,7 +23,48 @@ except ImportError:
     from yaml import Loader
 
 
-def parse_contents(page: dict) -> Iterator[dict]:
+class PageSwitcherDatum:
+
+    def __init__(
+            self,
+            filename: str,
+            title: str,
+            is_active: bool = False,
+    ) -> None:
+        self.filename = filename
+        self.title = title
+        self.is_active = is_active
+
+    @staticmethod
+    def load(page_data: dict):
+        filename = page_data.get('file') or ''
+        if not filename:
+            raise ValueError("Missing file")
+
+        title = page_data.get('title') or ''
+        if not title:
+            raise ValueError("Missing title")
+
+        return PageSwitcherDatum(filename, title)
+
+    def __enter__(self):
+        self.is_active = True
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.is_active = False
+
+
+def add_data_to_page_switcher(
+        item: dict,
+        page_switcher_data: Dict[str, PageSwitcherDatum],
+):
+    pass
+
+
+def parse_contents(
+        page: dict,
+        page_switcher_data: Dict[str, PageSwitcherDatum],
+) -> Iterator[dict]:
     contents = page.get('contents', [])
     content_sort = page.get('content_sort', [])
     if not content_sort:
@@ -84,7 +125,24 @@ def copy_required_files(requires: List[str], output_dir: Path):
             copy2(src_file, dest_file)
 
 
-def process_input_file(input_file: str, output_dir: Path):
+def get_switcher_data(data: dict) -> dict:
+    """
+    Search through the .yaml file's data and extract a page listing
+    :param data: All the data from the .yaml file.
+    """
+    page_switcher_data = {}
+    for page in data.get('pages', []):
+        try:
+            page_datum = PageSwitcherDatum.load(page)
+        except ValueError as error:
+            print(f"Unable to load page switcher data {error}", file=stderr)
+        else:
+            page_switcher_data[page_datum.filename] = page_datum
+    return page_switcher_data
+
+
+def process_input_file(input_file: str, output_dir: Path) -> bool:
+    """Process the YAML source file and render a number of HTML files"""
 
     env = Environment(
         loader=FileSystemLoader(
@@ -103,6 +161,8 @@ def process_input_file(input_file: str, output_dir: Path):
 
         copy_required_files(data.get('requires', []), output_dir)
 
+        page_switcher_data: Dict[str, PageSwitcherDatum] = get_switcher_data(data)
+
         for page in data.get('pages', []):
             template = page.get('template')
             template = env.get_template(template)
@@ -111,17 +171,21 @@ def process_input_file(input_file: str, output_dir: Path):
             if not file_name:
                 continue
 
-            output_file = output_dir / file_name
-            with open(str(output_file), 'w') as out_file:
-                out_file.write(
-                    template.render(
-                        contents=parse_contents(page),
+            page['page_switcher_data'] = page_switcher_data
+
+            page_switcher_datum = page_switcher_data[file_name]
+            with page_switcher_datum:
+                output_file = output_dir / file_name
+                with open(str(output_file), 'w') as out_file:
+                    out_file.write(
+                        template.render(
+                            contents=parse_contents(page, page_switcher_data),
+                        )
                     )
-                )
     return True
 
 
-def copy_if_newer(source_file, dest_file):
+def copy_if_newer(source_file: Path, dest_file: Path):
     if not source_file.exists():
         print(f"{source_file} not found", file=stderr)
         return False

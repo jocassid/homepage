@@ -44,7 +44,6 @@ option{
 }
 
 div.bookmark-blocks{
-
     margin: 1rem;
     border: solid var(--color-foreground-1) 0.125rem;
     padding: 1rem;
@@ -67,38 +66,41 @@ div.card-title{
     padding-top: 0.25rem;
     padding-left: 0.5rem;
     padding-bottom: 0.375rem;
-}
 
-div.card-title > a{
-    border-bottom: dotted var(--color-foreground-1) 0.125rem;
+    & > a{
+        border-bottom: dotted var(--color-foreground-1) 0.125rem;
+    }
 }
 
 div.card-body{
     padding-left: 0.5rem;
     padding-bottom: 0.5rem;
+
+    & > a{
+        margin-bottom: 0.125rem;
+    }
 }
 
-div.card-body > a{
-    margin-bottom: 0.125rem;
-}
+
+
 
 div.link-group{
     align-items: flex-start;
-}
 
-div.link-group > a{
-    color: var(--color-foreground-0);
-    border-right: solid var(--color-foreground-0) 0.25rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-}
+    & > a{
+        color: var(--color-foreground-0);
+        border-right: solid var(--color-foreground-0) 0.25rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
 
-div.link-group > a:first-child{
-    padding-left: 0;
-}
+    & > a:first-child{
+        padding-left: 0;
+    }
 
-div.link-group > a:last-child{
-    border-right: none;
+    & > a:last-child{
+        border-right: none;
+    }
 }
 
 div.search{

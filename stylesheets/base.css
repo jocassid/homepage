@@ -39,31 +39,36 @@ div.card-header {
 
 div.card-body{
     padding-top: 0.5rem;
+
+    & > a {
+        display: block;
+    }
+
+    & > select{
+        display: block;
+    }
+
+    & div.search{}
 }
 
-div.card-body > a {
-    display: block;
-}
 
-div.card-body > select{
-    display: block;
-}
+
+
 
 div.link-group{
     display: flex;
+
+    & > a{}
+
+    & > a:first-child{}
+
+    & > a:last-child{}
+
 }
 
-div.link-group > a{
-}
 
-div.link-group > a:first-child{
-}
 
-div.link-group > a:last-child{
-}
 
-div.card-body div.search{
-}
 
 
 

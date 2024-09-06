@@ -23,6 +23,7 @@
         {% elif item.type == 'search' %}
             {% set search = item %}
             {% include 'search.html' %}
+        {% elif item.type == 'page switcher' %}
         {% else %}
             Unsupported type {{ item.type }}
         {% endif %}
