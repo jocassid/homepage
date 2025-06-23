@@ -1,5 +1,7 @@
 /* lcars.css */
 
+@import "base.css";
+
 :root{
     --color-background: #000000;
     --color-foreground-0: #ffffff;

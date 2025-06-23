@@ -1,4 +1,8 @@
 
+a:visited{
+    color: blue;
+}
+
 body{
     background: var(--color-background);
     color: var(--color-foreground-0);
@@ -22,6 +26,28 @@ textarea:focus{
     border: solid 0.25rem var(--color-foreground-1);
     /*box-shadow: none; doesn't get rid of styling browser adds */
 }
+
+table{
+    border-collapse: collapse;
+
+    & > thead{
+        & > tr{
+            & > th{
+                border: solid 0.125rem var(--color-foreground-0);
+                padding: 0.25rem;
+            }
+        }
+    }
+    & > tbody{
+        & > tr{
+            & > td{
+                border: solid 0.125rem var(--color-foreground-0);
+                padding: 0.25rem;
+            }
+        }
+    }
+}
+
 
 div.bookmark-blocks{
     display: flex;
@@ -51,10 +77,6 @@ div.card-body{
     & div.search{}
 }
 
-
-
-
-
 div.link-group{
     display: flex;
 
@@ -64,6 +86,10 @@ div.link-group{
 
     & > a:last-child{}
 
+}
+
+div.title{
+    font-size: 2rem;
 }
 
 
